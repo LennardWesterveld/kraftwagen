@@ -8,6 +8,7 @@
 
 // Name of the Kraftwagen configuration file.
 define('KRAFTWAGEN_RC', 'kraftwagenrc.php');
+define('KRAFTWAGEN_RC_D8', 'kraftwagenrc-d8.php');
 
 // Prefix of all Kraftwagen configuration values.
 define('KRAFTWAGEN_PREFIX', 'kw-');
@@ -28,9 +29,28 @@ define('KRAFTWAGEN_CONTEXT_RUNTIME', 'process');
  * Load the default kraftwagenrc.php file.
  */
 function kraftwagen_context_load_default_config() {
-  foreach (array(dirname(__FILE__) . '/../' . KRAFTWAGEN_RC, '/etc/' . KRAFTWAGEN_RC, drush_server_home() . '/.drush/' . KRAFTWAGEN_RC) as $file) {
-    if (file_exists($file)) {
-      kraftwagen_context_load_config_file($file, KRAFTWAGEN_CONTEXT_DEFAULT);
+  //TODO: check for d8 src
+  $drupal_version = "8";
+  if($drupal_version == "7") {
+    foreach (array(
+               dirname(__FILE__) . '/../' . KRAFTWAGEN_RC,
+               '/etc/' . KRAFTWAGEN_RC,
+               drush_server_home() . '/.drush/' . KRAFTWAGEN_RC
+             ) as $file) {
+      if (file_exists($file)) {
+        kraftwagen_context_load_config_file($file, KRAFTWAGEN_CONTEXT_DEFAULT);
+      }
+    }
+  }
+  if($drupal_version == "8") {
+    foreach (array(
+               dirname(__FILE__) . '/../' . KRAFTWAGEN_RC_D8,
+               '/etc/' . KRAFTWAGEN_RC_D8,
+               drush_server_home() . '/.drush/' . KRAFTWAGEN_RC_D8
+             ) as $file) {
+      if (file_exists($file)) {
+        kraftwagen_context_load_config_file($file, KRAFTWAGEN_CONTEXT_DEFAULT);
+      }
     }
   }
 }

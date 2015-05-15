@@ -22,7 +22,7 @@ function drush_kraftwagen_kw_build() {
 
   // Generate new make file in tmp.
   require_once dirname(__FILE__) . '/includes/kraftwagen.fileutils.inc';
-  $make_file_location = drush_tempnam('kw');
+  $build_location = drush_tempnam('kw');
 
   // Gind out where to create the new build.
   if (!($target_dir = kraftwagen_build_determine_target($root))) {
@@ -30,7 +30,7 @@ function drush_kraftwagen_kw_build() {
   }
 
   kraftwagen_commands_sequence_run('build-commands', array(
-    '*make_file_location*' => $make_file_location,
+    '*build_location*' => $build_location,
     '*target_dir*' => $target_dir,
   ));
 }

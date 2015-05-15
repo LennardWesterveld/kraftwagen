@@ -44,6 +44,16 @@ function kraftwagen_drush_command() {
     'required-arguments' => 1,
   );
 
+  $items['kw-composer-install'] = array(
+    'hidden' => TRUE,
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'description' => dt('Build src by composer'),
+    'arguments' => array(
+      'location' => dt('The location where to store the build')
+    ),
+    'required-arguments' => 1,
+  );
+
   $items['kw-activate-build'] = array(
     'hidden' => TRUE,
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
