@@ -49,7 +49,8 @@ function drush_kraftwagen_kw_composer_install($location, $target_dir, $src_dir =
 
   //build
   drush_op_system("/usr/local/bin/composer install -d " . $location);
-
+  //TODO: check if gives status code 0
+  
   //move tmp build folder
   drush_move_dir($location, $target_dir);
 
